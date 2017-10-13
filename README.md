@@ -5,3 +5,4 @@ This docker image builds on the Ubuntu-scala docker image, adding a user and exp
 ## Change Log
 
 2017-05-11: Updated Scala and SBT version
+2017-10-13: Changed versioning

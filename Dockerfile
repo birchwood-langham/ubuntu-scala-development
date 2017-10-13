@@ -1,4 +1,8 @@
-FROM birchwoodlangham/ubuntu-scala:2.12.3
+FROM birchwoodlangham/ubuntu-scala:latest
+
+MAINTAINER Tan Quach <tan.quach@birchwoodlangham.com>
+
+ENV DEBIAN_FRONTEND noninteractive
 
 # install zsh, python pip etc.
 RUN apt-get update && \
