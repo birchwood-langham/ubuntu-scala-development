@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-docker build -t birchwoodlangham/ubuntu-scala-development:2017-10 .
+VERSION=2018-03
+
+docker build -t birchwoodlangham/ubuntu-scala-development:$VERSION .
+docker tag birchwoodlangham/ubuntu-scala-development:$VERSION birchwoodlangham/ubuntu-scala-development:latest
