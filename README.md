@@ -7,3 +7,4 @@ This docker image builds on the Ubuntu-scala docker image, adding a user and exp
 - 2017-05-11: Updated Scala and SBT version
 - 2017-10-13: Changed versioning
 - 2018-03-01: Version bump for JDK, Scala, SBT
+- 2019-06-23: Version bump for JDK, Scala, SBT

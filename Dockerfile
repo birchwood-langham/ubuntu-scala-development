@@ -1,14 +1,13 @@
 FROM birchwoodlangham/ubuntu-scala:latest
 
-MAINTAINER Tan Quach <tan.quach@birchwoodlangham.com>
+LABEL maintainer="tan.quach@birchwoodlangham.com"
 
 ENV DEBIAN_FRONTEND noninteractive
 
 # install zsh, python pip etc.
 RUN apt-get update && \
-    apt-get install -y python-pip python-dev powerline && \
+    apt-get install -y python-pip python-dev powerline exuberant-ctags && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    pip install --upgrade pip && \
     pip install psutil thefuck sexpdata websocket-client && \
     useradd -d /home/user -m -U user
 
@@ -22,11 +21,6 @@ COPY vimrc_plugins /home/user/.vimrc
 RUN git clone https://github.com/powerline/fonts.git && \
     fonts/install.sh && \
     rm -rf fonts && \
-    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git fonts && \
-    cd /home/user/fonts && \
-    ./install.sh -q --copy --complete && \
-    cd /home/user && \
-    rm -rf fonts && \
     mkdir -p /home/user/.vim && \
     git clone https://github.com/VundleVim/Vundle.vim.git /home/user/.vim/bundle/Vundle.vim && \
     vim +PluginInstall +qall
@@ -38,9 +32,8 @@ COPY vimrc /home/user/.vimrc
 # and .sbt for sbt configurations (plugins etc.)
 VOLUME ["/home/user/code", "/home/user/.m2", "/home/user/.ivy2", "/home/user/.sbt"]
 
-ENV JAVA_HOME=/usr/lib/jvm/java-8-oracle
-ENV DERBY_HOME=/usr/lib/jvm/java-8-oracle/db
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV SCALA_HOME=/usr/share/scala
-ENV SBT_HOME=/usr/share/sbt-launcher-packaging
+ENV SBT_HOME=/usr/share/sbt
 
 CMD ["/bin/bash"]
